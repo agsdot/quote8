@@ -1,10 +1,11 @@
 //bookmarklet code . Extra comment
 
 // javascript:(function(){document.body.appendChild(document.createElement('script')).src='http://localhost:3000/jsbookmarklet.js?q=Math.random()';})();
+//localhost to be used in development, however change the domain to whatever is used in production.
 
 //vital parts of the code:
 
-//1) this public facing js file
+//1) this public facing js file at http://localhost:3000/jsbookmarklet.js
 //2) the rails routes in app/bookmarks_controller.rb and the "new" action
 
 (function(){
@@ -32,7 +33,9 @@
       var doctitle = document.title;
       var doclocation = document.location;
       var selectedText = '';
-
+      
+      //Cross Browser compatibility, to retrieve selected text from IE, Firefox, Webkit(Safari and Chrome)
+      //Similar to code retrieved from http://help.dottoro.com/ljcvonpc.php
       function getSelText() {
         var SelText = '';
         if (window.getSelection) {
